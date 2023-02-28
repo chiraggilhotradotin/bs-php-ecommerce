@@ -25,11 +25,11 @@
                 <th>Action</th>
             </tr>
             <?php
-                $result = $conn->query("SELECT * FROM categories WHERE category_isdeleted=0");
                 $count = 1;
-                while($row = $result->fetch_assoc())
+                $categories = $conn->query("SELECT * FROM categories WHERE category_isdeleted=0");
+                while($category = $categories->fetch_assoc())
                 {
-                    echo "<tr><td>$count</td><td>{$row['category_name']}</td><td>{$row['category_slug']}</td><td><img height='50' src='../imgs/categories/{$row['category_image']}'></td><td>{$row['category_description']}</td><td><a href='editcategory.php?category_id={$row['category_id']}'>Edit</a> | <a href='deletecategory.php?category_id={$row['category_id']}' onclick='return confirm(\"Do you really want to delete this category?\");'>Delete</a></td></tr>";
+                    echo "<tr><td>$count</td><td>{$category['category_name']}</td><td>{$category['category_slug']}</td><td><img height='100' src='../imgs/categories/{$category['category_image']}'></td><td>{$category['category_description']}</td><td><a href='editcategory.php?category_id={$category['category_id']}'>Edit</a> | <a href='deletecategory.php?category_id={$category['category_id']}' onclick='return confirm(\"Do you really want to delete this category?\");'>Delete</a></td></tr>";
                     $count++;
                 }
             ?>
