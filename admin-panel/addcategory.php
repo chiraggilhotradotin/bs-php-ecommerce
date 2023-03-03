@@ -37,6 +37,9 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+<?php
+    include("includes/navbar.php");
+    ?>
     <div class="container-fluid my-5">
         <div class="row">
             <form class="col-md-6 offset-md-3" enctype="multipart/form-data" method="post">

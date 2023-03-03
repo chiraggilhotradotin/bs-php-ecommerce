@@ -55,6 +55,9 @@ $product = $products->fetch_assoc();
 </head>
 
 <body>
+<?php
+    include("includes/navbar.php");
+    ?>
     <div class="d-flex align-items-center min-vh-100">
         <div class="container-fluid">
             <div class="row">

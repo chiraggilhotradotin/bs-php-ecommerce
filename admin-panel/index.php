@@ -1,3 +1,3 @@
 <?php
-    header("location:categories.php");
+    header("location:dashboard.php");
 ?>
