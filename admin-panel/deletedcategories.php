@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories</title>
+    <title>Deleted Categories</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
@@ -18,7 +18,7 @@
     ?>
     <div class="table-responsive">
         <table class="table">
-            <caption class="h2 text-center caption-top">Categories <a href="addcategory.php" class="btn btn-secondary">+</a> <a href="deletedcategories.php" class="btn btn-secondary">␡</a></caption>
+            <caption class="h2 text-center caption-top">Deleted <a class="btn-link" href='categories.php'>Categories</a></caption>
             <tr>
                 <th>S. No.</th>
                 <th>Name</th>
@@ -29,10 +29,10 @@
             </tr>
             <?php
                 $count = 1;
-                $categories = $conn->query("SELECT * FROM categories WHERE category_isdeleted=0");
+                $categories = $conn->query("SELECT * FROM categories WHERE category_isdeleted=1");
                 while($category = $categories->fetch_assoc())
                 {
-                    echo "<tr><td>$count</td><td>{$category['category_name']}</td><td>{$category['category_slug']}</td><td><img height='100' src='../imgs/categories/{$category['category_image']}'></td><td>{$category['category_description']}</td><td><a href='editcategory.php?category_id={$category['category_id']}'>Edit</a> | <a href='deletecategory.php?category_id={$category['category_id']}' onclick='return confirm(\"Do you really want to delete this category?\");'>Delete</a></td></tr>";
+                    echo "<tr><td>$count</td><td>{$category['category_name']}</td><td>{$category['category_slug']}</td><td><img height='100' src='../imgs/categories/{$category['category_image']}'></td><td>{$category['category_description']}</td><td><a href='undeletecategory.php?category_id={$category['category_id']}'>Undelete</a></td></tr>";
                     $count++;
                 }
             ?>

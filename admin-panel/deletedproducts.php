@@ -9,7 +9,7 @@ include("includes/session.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>Deleted Products</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
@@ -20,8 +20,7 @@ include("includes/session.php");
     ?>
     <div class="table-responsive">
         <table class="table">
-            <caption class="caption-top text-center h2">Products <a href="addproduct.php"
-                    class="btn btn-secondary">+</a> <a href="deletedproducts.php" class="btn btn-secondary">␡</a></caption>
+            <caption class="caption-top text-center h2">Deleted <a class="btn-link" href="products.php">Products</a></caption>
             <tr>
                 <th>S. No.</th>
                 <th>Name</th>
@@ -34,9 +33,9 @@ include("includes/session.php");
             </tr>
             <?php
             $count = 1;
-            $products = $conn->query("SELECT * FROM products INNER JOIN categories ON products.product_category_id=categories.category_id WHERE product_isdeleted=0");
+            $products = $conn->query("SELECT * FROM products INNER JOIN categories ON products.product_category_id=categories.category_id WHERE product_isdeleted=1");
             while ($product = $products->fetch_assoc()) {
-                echo "<tr><td>$count</td><td>{$product['product_name']}</td><td>{$product['category_name']}</td><td>{$product['product_slug']}</td><td>{$product['product_price']}</td><td><img src='../imgs/products/{$product['product_image']}' height='100'></td><td>{$product['product_description']}</td><td><a href='editproduct.php?product_id={$product['product_id']}'>Edit</a> | <a href='deleteproduct.php?product_id={$product['product_id']}' onclick='return confirm(\"Do you really want to delete this product?\");'>Delete</a></td></tr>";
+                echo "<tr><td>$count</td><td>{$product['product_name']}</td><td>{$product['category_name']}</td><td>{$product['product_slug']}</td><td>{$product['product_price']}</td><td><img src='../imgs/products/{$product['product_image']}' height='100'></td><td>{$product['product_description']}</td><td><a href='undeleteproduct.php?product_id={$product['product_id']}'>Undelete</a></td></tr>";
                 $count++;
             }
             ?>

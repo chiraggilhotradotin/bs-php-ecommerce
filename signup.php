@@ -5,6 +5,8 @@
         try{
             $conn->query("INSERT INTO users (user_name, user_email, user_mobile, user_password) VALUES('{$_POST['user_name']}','{$_POST['user_email']}','{$_POST['user_mobile']}',MD5('{$_POST['user_password']}'))");
             $success = "User created successfully. Please click <a href='sendmail.php'>here</a> to verify your account.";
+            $_SESSION['user_email'] = $_POST['user_email'];
+            $_SESSION['user_id'] = $conn->insert_id;
         }
         catch(mysqli_sql_exception $e)
         {
@@ -58,7 +60,7 @@
                         <input type="password" name="user_password" id="user_password" required class="form-control">
                     </div>
                     <div class="mt-4">
-                        <input type="submit" name="submit" class="btn btn-primary w-100">
+                        <input type="submit" value="Signup" name="submit" class="btn btn-primary w-100">
                     </div>
                 </form>
             </div>
